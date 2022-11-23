@@ -14,8 +14,22 @@ jobs:
         type: 'zip'
         directory: 'resourcepack'
         filename: 'resources.zip'
+    - name: Archive Release
+      uses: thedoctor0/zip-release@main
+      with:
+        type: 'zip'
+        directory: 'datapack'
+        filename: 'datapack.zip'
+    - name: checksum
+      id: checksum
+      run: |
+        resources_checksum=$(sha1sum resourcepack/resources.zip)
+        echo ::set-output name=resources::$resources_checksum
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: 'resourcepack/resources.zip'
+        artifacts: |
+          'resourcepack/resources.zip'
+          'datapack/datapack.zip'
         token: ${{ secrets.GITHUB_TOKEN }}
+        body: 'resources-sha1: ${{ steps.checksum.outputs.resources }}'
