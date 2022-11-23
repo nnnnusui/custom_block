@@ -8,26 +8,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: Set version
+      id: name
+      run: |
+        REPOSITORY=$(echo ${{ github.repository }} | sed -e 's#.*/##')
+        echo ::set-output name=name::$REPOSITORY
+        echo ::set-output name=resources::$REPOSITORY-resources
+        echo ::set-output name=datapack::$REPOSITORY-datapack
     - name: Archive Release
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
         directory: 'resourcepack'
-        filename: 'resources.zip'
+        filename: '${{ steps.name.outputs.resources }}.zip'
     - name: Archive Release
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
         directory: 'datapack'
-        filename: 'datapack.zip'
+        filename: '${{ steps.name.outputs.datapack }}.zip'
     - name: checksum
       id: checksum
       run: |
-        resources_checksum=$(sha1sum resourcepack/resources.zip)
+        resources_checksum=$(sha1sum resourcepack/${{ steps.name.outputs.resources }}.zip)
         echo ::set-output name=resources::$resources_checksum
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: 'resourcepack/resources.zip,datapack/datapack.zip'
+        artifacts: 'resourcepack/${{ steps.name.outputs.resources }}.zip,datapack/${{ steps.name.outputs.datapack }}.zip'
         token: ${{ secrets.GITHUB_TOKEN }}
-        body: 'resources-sha1: ${{ steps.checksum.outputs.resources }}'
+        body: 'sha1: ${{ steps.checksum.outputs.resources }}'
