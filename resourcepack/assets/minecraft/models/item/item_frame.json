@@ -4,6 +4,6 @@
     "layer0": "item/item_frame"
   },
   "overrides": [
-    { "predicate": { "custom_model_data": 1 }, "model": "item/invisible" }
+    { "predicate": { "custom_model_data": 1 }, "model": "custom_block:item/invisible" }
   ]
 }
