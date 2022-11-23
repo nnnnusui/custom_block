@@ -28,8 +28,6 @@ jobs:
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: |
-          'resourcepack/resources.zip'
-          'datapack/datapack.zip'
+        artifacts: 'resourcepack/resources.zip,datapack/datapack.zip'
         token: ${{ secrets.GITHUB_TOKEN }}
         body: 'resources-sha1: ${{ steps.checksum.outputs.resources }}'
