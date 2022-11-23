@@ -17,5 +17,5 @@ jobs:
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: 'resources.zip'
+        artifacts: 'resourcepack/resources.zip'
         token: ${{ secrets.GITHUB_TOKEN }}
