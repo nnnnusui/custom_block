@@ -12,8 +12,8 @@ jobs:
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
+        directory: 'resourcepack'
         filename: 'resources.zip'
-        path: './resourcepack'
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
