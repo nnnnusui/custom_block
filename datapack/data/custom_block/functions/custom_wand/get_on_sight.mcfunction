@@ -1,7 +1,8 @@
 scoreboard players add progress on_sight_scan 1
+execute if score progress on_sight_scan matches 1 run tag @s add on_scan
 
 # val on_scan
-execute if score progress on_sight_scan matches 1..50 run tag @s add on_scan
+execute unless score progress on_sight_scan matches 1..50 run tag @s remove on_scan
 # val detected
 execute positioned ^ ^ ^ if entity @e[distance=..1,sort=nearest,limit=1,type=minecraft:item_frame,tag=custom_block,tag=placed] run tag @s add detected
 
