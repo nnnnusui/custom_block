@@ -6,3 +6,6 @@ scoreboard players set @a stick 0
 execute as @e[type=minecraft:item_frame,tag=custom_block,tag=!placed] at @s run function custom_block:collision/add
 # remove colision when custom_block braked.
 #execute as @e[type=minecraft:item_frame,tag=custom_block,tag=placed] at @s if block ~ ~ ~ minecraft:air run function custom_block:collision/remove
+
+# show placed `invisible` in on_hand.
+function custom_block:invisible/on_hand
