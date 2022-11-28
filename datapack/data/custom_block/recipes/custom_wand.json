@@ -1,12 +1,18 @@
 {
-  "type":"crafting_shapeless",
-  "ingredients":[
-    [
-      {
-        "item":"minecraft:stick"
-      }
-    ]
+  "type":"crafting_shaped",
+  "pattern": [
+      "AAA",
+      " B ",
+      " B "
   ],
+  "key": {
+    "A": {
+      "item": "minecraft:glass"
+    },
+    "B": {
+      "item":"minecraft:stick"
+    }
+  },
   "result":{
     "item": "minecraft:knowledge_book"
   }
