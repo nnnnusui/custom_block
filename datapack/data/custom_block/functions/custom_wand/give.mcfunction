@@ -1,1 +1,1 @@
-give @p minecraft:carrot_on_a_stick{CustomModelData:0}
+give @p minecraft:carrot_on_a_stick{CustomModelData:1}
